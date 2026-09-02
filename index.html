@@ -280,6 +280,65 @@
   }
   .content-card li{ margin-bottom:.4rem; }
 
+  .resources{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));
+    gap:1.4rem;
+  }
+
+  .resource-group{
+    background:var(--card);
+    border:2px solid var(--teal-line);
+    border-radius:var(--radius);
+    padding:1.3rem 1.4rem;
+  }
+
+  .resource-group h3{
+    margin:0 0 .8rem;
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    color:var(--teal);
+    padding-bottom:.5rem;
+    border-bottom:1px solid var(--teal-line);
+  }
+
+  .resource-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  .resource-list li{
+    margin-bottom:.5rem;
+  }
+
+  .resource-list a{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px dashed transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  .resource-list a::before{
+    content:"📄";
+    font-size:.85em;
+    flex-shrink:0;
+  }
+
+  .resource-list a:hover,
+  .resource-list a:focus-visible{
+    color:var(--pomegranate);
+    border-bottom-color:var(--pomegranate);
+  }
+
+  .resource-list .placeholder{
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
   footer.page-note{
     margin-top:1.6rem;
     font-size:.85rem;
@@ -358,6 +417,7 @@
         <li><button class="navlink" data-target="page-5"><span class="num">05</span> Règlement</button></li>
         <li><button class="navlink" data-target="page-6"><span class="num">06</span> Pourquoi apprendre l'arabe ?</button></li>
         <li><button class="navlink" data-target="page-7"><span class="num">07</span> Cours</button></li>
+        <li><button class="navlink" data-target="page-8"><span class="num">08</span> Ressources</button></li>
       </ul>
     </nav>
   </aside>
@@ -520,6 +580,53 @@
         </ul>
       </div>
       <footer class="page-note"></footer>
+    </section>
+
+    <section class="page" id="page-8">
+      <div class="page-eyebrow"><span class="num">08</span> Ressources</div>
+      <h1>Fichiers partagés</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">Retrouvez ici les documents partagés en classe, classés par thème.</p>
+        <div class="resources">
+
+          <div class="resource-group">
+            <h3>Grammaire</h3>
+            <ul class="resource-list">
+              <li><a href="#" class="placeholder">À compléter</a></li>
+            </ul>
+          </div>
+
+          <div class="resource-group">
+            <h3>Vidéos</h3>
+            <ul class="resource-list">
+              <li><a href="#" class="placeholder">À compléter</a></li>
+            </ul>
+          </div>
+
+          <div class="resource-group">
+            <h3>Coran</h3>
+            <ul class="resource-list">
+              <li><a href="#" class="placeholder">À compléter</a></li>
+            </ul>
+          </div>
+
+          <div class="resource-group">
+            <h3>Arabe</h3>
+            <ul class="resource-list">
+              <li><a href="#" class="placeholder">À compléter</a></li>
+            </ul>
+          </div>
+
+          <div class="resource-group">
+            <h3>Divers</h3>
+            <ul class="resource-list">
+              <li><a href="#" class="placeholder">À compléter</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
     </section>
 
   </main>
