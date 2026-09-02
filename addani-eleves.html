@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours d'arabe 1ere année - Rentrée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  /* ===== Design tokens ===== */
+  :root{
+    --sand:        #F4E9D6;
+    --sand-deep:   #EADFC3;
+    --card:        #FBF6EA;
+    --ink:         #2B2119;
+    --ink-soft:    #5A4E3F;
+    --teal:        #0E4B43;
+    --teal-dark:   #082E29;
+    --teal-line:   rgba(14,75,67,0.18);
+    --gold:        #BF9B30;
+    --gold-light:  #E4C766;
+    --pomegranate: #8C2F2A;
+
+    --font-display: 'Reem Kufi', 'Cairo', sans-serif;
+    --font-body:    'Cairo', sans-serif;
+
+    --radius: 4px;
+    --sidebar-w: 330px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  html, body{ overflow-x:hidden; }
+
+  body{
+    margin:0;
+    width:100%;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold-light); color:var(--teal-dark); }
+
+  /* visible focus ring everywhere */
+  a:focus-visible,button:focus, button:focus-visible{
+    outline:2px solid var(--sand);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  img{
+    max-width: 100%;
+    object-fit: contain;
+    border: 2px solid var(--gold)
+  }
+
+  /* ===== Repeating geometric motif (8-point star lattice) ===== */
+  svg.defs{ position:absolute; width:0; height:0; overflow:hidden; }
+
+  .pattern-teal{
+    background-color:var(--teal);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23BF9B30' stroke-width='1' opacity='0.35'%3E%3Cpath d='M32 4 L44 16 L60 16 L48 28 L60 40 L44 40 L32 52 L20 40 L4 40 L16 28 L4 16 L20 16 Z'/%3E%3Ccircle cx='32' cy='28' r='6'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:64px 64px;
+  }
+
+  /* ===== App shell ===== */
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---- Sidebar navigation ---- */
+  .sidebar{
+    width:var(--sidebar-w);
+    flex-shrink:0;
+    color:var(--sand);
+    display:flex;
+    flex-direction:column;
+    position:sticky;
+    top:0;
+    height: auto;
+    overflow-x:hidden;
+  }
+
+  .brand{
+    padding:3rem 1.5rem 1.4rem;
+    border-bottom:1px solid rgba(228,199,102,0.25);
+  }
+
+  .brand .kalima{
+    font-family:var(--font-display);
+    font-size:2.1rem;
+    color:var(--sand);
+    letter-spacing:0.02em;
+    line-height:1.15;
+    margin:0;
+  }
+  .bold {font-weight: bold;}
+
+  .brand .sub{
+    margin:.5rem 0 0;
+    font-size:.95rem;
+    font-weight:300
+  }
+
+  nav.pages{
+    flex:1;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:1rem 0 1.4rem;
+  }
+
+  nav.pages ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  nav.pages button.navlink{
+    box-sizing:border-box;
+    display:flex;
+    align-items:baseline;
+    gap:.8rem;
+    width:100%;
+    padding:.85rem 1.8rem;
+    cursor:pointer;
+    color:var(--sand);
+    background-color: transparent;
+    font-family:var(--font-body);
+    font-size:1.1rem;
+    font-weight:600;
+    border-left:3px solid transparent;
+    transition:background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+
+  nav.pages button.navlink:hover{
+    background:rgba(228,199,102,0.14);
+    color:#FFFFFF;
+  }
+
+  nav.pages button.navlink .num{
+    font-family:var(--font-display);
+    color:var(--gold-light)
+  }
+
+  nav.pages button.navlink[aria-current="page"]{
+    background:rgba(228,199,102,0.2);
+    border-left-color:var(--gold-light);
+    color:#FFFFFF;
+  }
+
+  .sidebar-foot{
+    padding:1.1rem 1.8rem 1.5rem;
+    font-size:.82rem;
+    color:rgba(244,233,214,0.45);
+    border-top:1px solid rgba(228,199,102,0.2);
+  }
+
+  /* ---- Mobile top bar ---- */
+  .topbar{
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    padding:1rem 1.2rem;
+    color:var(--sand);
+    position:sticky;
+    top:0;
+    z-index:30;
+  }
+.btn--close {
+    position: absolute;
+    display: none;
+    top: .5rem;
+    RIGHT: 1rem;
+    padding: .5rem;
+    background: transparent;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--card);
+    font-size: 1.3rem
+}
+  .topbar .kalima{
+    font-family:var(--font-display);
+    font-size:1.4rem;
+    margin:0;
+  }
+  .kalima span{ color:var(--gold-light);display:block }
+
+  .burger{
+    all:unset;
+    cursor:pointer;
+    width:38px; height:38px;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:5px;
+  }
+  .burger span{
+    display:block; width:22px; height:2px;
+    background:var(--sand);
+  }
+
+  /* ---- Main content ---- */
+  main.stage{
+    flex:1;
+    min-width:0;
+    padding:4rem clamp(1.4rem, 5vw, 5rem);
+    max-width:920px;
+  }
+
+  .page{ display:none; }
+  .page[data-active="true"]{ display:block; animation:riseIn .5s ease both; }
+
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .page-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    color:var(--ink-soft);
+    font-size:1.5rem;
+    margin-bottom:.6rem;
+  }
+  .page-eyebrow .num{
+    font-family:var(--font-display);
+    font-size:1.4rem;
+    color:var(--pomegranate);
+  }
+
+  .page h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.1rem, 4vw, 3rem);
+    color:var(--teal);
+    margin:0 0 1.1rem;
+    line-height:1.15;
+  }
+
+  .divider{
+    width:120px;
+    height:18px;
+    margin:0 0 2.2rem;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='18' viewBox='0 0 120 18'%3E%3Cg fill='none' stroke='%23BF9B30' stroke-width='1.4'%3E%3Cline x1='0' y1='9' x2='38' y2='9'/%3E%3Cline x1='82' y1='9' x2='120' y2='9'/%3E%3Cpath d='M60 1 L68 9 L60 17 L52 9 Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:left center;
+  }
+
+  .content-card{
+    background:var(--card);
+    border:1px solid var(--teal-line);
+    border-radius:var(--radius);
+    padding:clamp(1.6rem, 3vw, 2.6rem);
+    box-shadow:0 1px 0 rgba(14,75,67,0.06);
+  }
+
+  .content-card p{
+    margin:0 0 1rem;
+    max-width:68ch;
+  }
+  .content-card p:last-child{ margin-bottom:0; }
+
+  .placeholder{
+    color:var(--ink-soft);
+  }
+
+  .content-card ul{
+    margin:0 0 1rem;
+    padding-left:1.3rem;
+  }
+  .content-card li{ margin-bottom:.4rem; }
+
+  footer.page-note{
+    margin-top:1.6rem;
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+
+  /* Overlay for mobile nav */
+  .overlay{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(8,46,41,0.55);
+    z-index:20;
+  }
+  .overlay[data-show="true"]{ display:block; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    .app{ flex-direction:column; }
+
+    .topbar{ display:flex; }
+    .btn--close {display: block;}
+    .sidebar{
+      position:fixed;
+      inset:0 30% 0 0;
+      width:auto;
+      height:100vh;
+      transform:translateX(-100%);
+      transition:transform .25s ease;
+      z-index:25;
+      visibility:hidden;
+      box-shadow:8px 0 24px rgba(0,0,0,0.25);
+    }
+    .sidebar[data-open="true"]{ transform:translateX(0);z-index:50;visibility:visible }
+
+    main.stage{
+      padding:2.2rem 1.3rem 3rem;
+      max-width:100%;
+    }
+  }
+
+  @media (max-width: 490px){
+    .sidebar{
+      inset:0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile top bar -->
+<div class="topbar pattern-teal">
+  <p class="kalima" dir="rtl" lang="ar">الـعربية  في  الداني<span class="span"> · Cours d'arabe</span></p>
+  <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="sidebar" title="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar pattern-teal" id="sidebar">
+    <button class="btn btn--close" aria-label="Fermer le menu" title="Fermer le menu">X</button>
+    <div class="brand">
+      <p class="kalima" dir="rtl" lang="ar">الـعربية  في  الداني<span>1ere année Addani</span></p>
+      <p class="sub">Programme de la rentrée</p>
+    </div>
+
+    <nav class="pages" aria-label="Sommaire du cours">
+      <ul id="navList">
+        <li><button class="navlink" data-target="page-1" aria-current="page"><span class="num">01</span> Rappel &amp; conseils</button></li>
+        <li><button class="navlink" data-target="page-2"><span class="num">02</span> Présentations</button></li>
+        <li><button class="navlink" data-target="page-3"><span class="num">03</span> Objectifs</button></li>
+        <li><button class="navlink" data-target="page-4"><span class="num">04</span> Déroulement du cours</button></li>
+        <li><button class="navlink" data-target="page-5"><span class="num">05</span> Règlement</button></li>
+        <li><button class="navlink" data-target="page-6"><span class="num">06</span> Pourquoi apprendre l'arabe ?</button></li>
+        <li><button class="navlink" data-target="page-7"><span class="num">07</span> Cours</button></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="stage">
+
+    <section class="page" id="page-1" data-active="true">
+      <div class="page-eyebrow"><span class="num">01</span> Rappel &amp; conseils</div>
+      <h1>Tips pour vous</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">Bienvenue ! Voici ce qui pourrait vous aider à profiter au maximum de ces cours d'arabe à l'Institut ADDANI.</p>
+        <ul>
+          <li class="placeholder">Sincerité</li>
+          <li class="placeholder">Humilité</li>
+          <li class="placeholder">Travail</li>
+          <li class="placeholder">Concentration</li>
+          <li class="placeholder">Implication</li>
+          <li class="placeholder">Optimiser son temps</li>
+          <li class="placeholder">Apporter ses armes</li>
+          <li class="placeholder">Relire le cours</li>
+          <li class="placeholder bold">Surconfiance</li>
+        </ul>
+        <img class="img" src="https://neelnajaproduction.com/wp-content/uploads/2021/01/effet_dunning_kruger-1536x854.png" alt="Courbe de la surconfiance">
+        <ul>
+          <li class="placeholder">Apprendre</li>
+          <li class="placeholder">Adab</li>
+          <li class="placeholder">Appliquer</li>
+          <li class="placeholder">Prévenir des absences</li>
+          <li class="placeholder">Determination</li>
+        </ul>   
+        <h3>Conseils pour mémoriser : méthode des J.</h3>
+        <h3>L'excellence</h3>
+      </div>
+    </section>
+
+    <section class="page" id="page-2">
+      <div class="page-eyebrow"><span class="num">02</span> Présentations</div>
+      <h1>Qui nous sommes</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">Addani suit le programme de la <span class="bold">Madrassah de Paris</span> :</p>
+        <ul>
+          <li>1971 : Aventure à l'étranger puis conversion d'Yves Leseur - Mohammed Ayoub.</li>
+          <li>1978 : diplômé de l'université de Karachi, Pakistan (10ème du pays). Ourdou & perse.</li>
+          <li>1986 : libraire puis fondation de la Madrassah, rue Affre (commerçant décédé). Enfants d'abord.</li>
+          <li>1991 : 1er tome d'apprentissage de l'arabe, plus adapté au public francophone. Son programme repose alors sur un support innovant en France, accessible, en constante évolution et relecture. Nombreux locaux... En ligne depuis 2021, refonte web en 2022.</li>
+          <li>Cursus en 6 ans sans objectif d'être arabophone, mais être un musulman complet. Des bases solides en grammaire, capacités de traduction, lecture de texte non vocalisé, mémoriser quelques hizbs, bases de Tadjwid/fiqh malikite, mémorisation/compréhension des 40 hadiths de Nawawi, étude de la Sirah... Pas élitiste : faisable par le plus grand nombre sauf les flemmards !</li>
+        </ul>
+        <p class="bold">Petit mot sur mon parcours.</p>
+        <p class="bold">Tour de table (1 min max chacun)...</p>
+      </div>
+    </section>
+
+    <section class="page" id="page-3">
+      <div class="page-eyebrow"><span class="num">03</span> Objectifs</div>
+      <h1>Quel cap suivre ?</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder"><span class="bold">Pérequis</span> : avoir <span class="bold">l'envie et le temps</span>.</p>
+        <p class="bold">Objectifs :</p>
+        <ul>
+          <li class="placeholder">Lecture : fluidité (pas de pause, c + important que la vitesse), lecture correcte. Liaisons correctement effectuées. Plus de confusion entre lettres.</li>
+          <li class="placeholder">Ecriture : Lisible et respectueuse de la taille de chaque lettre par rapport aux interlignes.</li>
+          <li class="placeholder">Dictée : lettres correctement attachées ou non, forme des lettres adaptée, tolérance de quelques confusions sur des sons proches</li>
+          <li class="placeholder">Devoirs : faits correctement.</li>
+          
+          <li class="placeholder">Vocabulaire : capable de mémoriser des mots régulièrement.</li>
+          <li class="placeholder">Grammaire : leçons assimilées.</li>
+          <li class="placeholder">Sourates : apprises correctement.</li>
+          <li class="placeholder">Tarbiya : apprises régulièrement.</li>
+        </ul>
+        <p>En 4eme : perfectionnement de la traduction et grammaire, perfectionnement de la lecture coranique. 'Aqida + fiqh malikite.</p>
+        <p>En 5eme/6eme : lire et comprendre 1 texte fluidement sans voyelle, analyse gram complexe, science du hadith, perfectionner le tadjwid.</p>
+        <p>En 7eme : etude du Mouwatta en 5 ans, 3 cours du soir/semaine. Session a commencé en sept 2021. New boucle en 2026.</p>
+      </div>
+    </section>
+
+    <section class="page" id="page-4">
+      <div class="page-eyebrow"><span class="num">04</span> Déroulement du cours</div>
+      <h1>Trame à chaque session</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">Pour le 1er trimestre :</p>
+        <ul>
+          <li class="placeholder">Appel</li>
+          <li class="placeholder">Checks devoirs écrits</li>
+          <li class="placeholder">Lecture de la lettre du cours précédent (35 min)</li>
+          <li class="placeholder">Dictée sur la lettre précédente avec mots du texte</li>
+          <li class="placeholder">Leçon sur la nouvelle lettre</li>          
+          <li class="placeholder">Notation des devoirs</li>
+        </ul>
+        <p><span class="bold">Fournitures</span> : Avoir 2 cahiers grands carreaux, crayons + gomme, ardoise + feutre, de quoi noter en classe. Pas de stylo rouge !</p>
+      </div>
+    </section>
+
+    <section class="page" id="page-5">
+      <div class="page-eyebrow"><span class="num">05</span> Règlement</div>
+      <h1>Mise au point</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">Voici les règles de vie de la classe : ponctualité, respect, matériel, comportement attendu :</p>
+        <ul>
+          <li class="placeholder">Règlement signés ?</li>
+          <li class="placeholder">5 étapes obligatoires</li>
+          <li class="placeholder">Punitions au besoin</li>
+          <li class="placeholder">Devoirs réguliers obligatoires</li>
+          <li class="placeholder">Retards : 8H15 max. sinon demi-tour !</li>
+          <li class="placeholder">Dates et autres infos dans le groupe Telegram...</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="page" id="page-6">
+      <div class="page-eyebrow"><span class="num">06</span> Pourquoi apprendre l'arabe&nbsp;?</div>
+      <h1>Why ?...</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder">
+          <ul>
+            <li class="placeholder">
+              Lire le Coran, le comprendre, le méditer, le mémoriser, le mettre en pratique et le transmettre.</li>
+              <li class="placeholder">Comprendre l'Islam, les savants, leurs livres et cours.</li>
+<li class="placeholder">Unifier la oumma.</li>
+<li class="placeholder">Apprendre notre religion, dou'as, dhikr, etc... sortir de l'ignorance !</li>
+<li class="placeholder">Un moyen de se rapprocher et d'adorer Allah davantage.</li>
+<li class="placeholder">La recherche de la science est une obligation pour chaque musulman" (ibn Mâjah).</li>"
+<li class="placeholder">Un accès au paradis, selon le hadith de Mouslim.</li>
+<li class="placeholder">Améliorer sa Salat, ses évocations et dou'as (exemples)</li>
+<li class="placeholder">Les créatures invoquent Allah pour le savant, même le poisson dans l'eau.</li>
+<li class="placeholder">Mais la science ne suffit pas : pour parler d'héritage prophétique, il faut ajouter la lumière de la science (sa conséquence bénéfique) ! Hassan Al Basri dit : "La science est de 2 types : une science dans le cœur; celle-ci est la science bénéfique, et une science sur la langue; celle-ci est l'argument d'Allah contre le fils d'Adam" (rapporté par Ad-Dârimi). La science est à double tranchant : soit c'est bénéfique (Paradis), soit pas bénéfique et Enfer (car manque de sincérité) ! </li>
+<li class="placeholder">Appliquer ce qu'on apprends (le vrai savant applique).</li>
+<li class="placeholder">Parler dans une langue étrangère à l'arabe est réprouvé (makrouh) selon de nombreux pieux prédécesseurs, dont Malik, sans raison valable (islamqa).</li>
+<li class="placeholder">La langue du Coran, livre contenant les paroles divines pour les croyants ! Comprendre Son message, raisonner, s'en imprégner et le mettre en pratique.
+C'est indispensable pour expliquer la moindre parole divine, notamment car les mots peuvent avoir plusieurs sens comme "dallan" (qui veut dire ignorant et non égaré) dans sourate 93.</li>
+            </li>
+          </ul>
+          
+        </p>
+      </div>
+    </section>
+
+    <section class="page" id="page-7">
+      <div class="page-eyebrow"><span class="num">07</span> Let's start today!</div>
+      <h1>1er cours</h1>
+      <div class="divider"></div>
+      <div class="content-card">
+        <p class="placeholder"></p>
+        <ul>
+          <li class="placeholder">Lire page 5 & 6, lettres, voyelles courtes & longues.</li>
+          <li class="placeholder">Exemples de lettres collées.</li>
+          <li class="placeholder">La lettre BA.</li>
+          <li class="placeholder">Chaun lit la page sur BA.</li>
+          <li class="placeholder">Ecrire 4 fois par ligne ds le livre (crayon).</li>
+        </ul>
+        <p><strong>Devoirs</strong> prochain cours :</p>
+        <ul>
+          <li>recopier 2 fois la page BA sur feuille (taille à respecter). Attention dictée après !!</li>
+          <li>Préparer la lecture fluide de la lettre BA.</li>
+        </ul>
+      </div>
+      <footer class="page-note"></footer>
+    </section>
+
+  </main>
+</div>
+
+<!-- Scripts Maison -->
+<script>
+  (function(){
+    var navButtons = document.querySelectorAll('.navlink');
+    var pages = document.querySelectorAll('.page');
+    var sidebar = document.getElementById('sidebar');
+    var close = document.querySelector('.btn--close');
+    var overlay = document.getElementById('overlay');
+    var burger = document.getElementById('burgerBtn');
+
+    function showPage(id){
+      pages.forEach(function(p){
+        if(p.id === id){ p.setAttribute('data-active','true'); }
+        else{ p.removeAttribute('data-active'); }
+      });
+      navButtons.forEach(function(b){
+        if(b.getAttribute('data-target') === id){ b.setAttribute('aria-current','page'); }
+        else{ b.removeAttribute('aria-current'); }
+      });
+      closeMenu();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    navButtons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        showPage(btn.getAttribute('data-target'));
+      });
+    });
+
+    function openMenu(){
+      sidebar.setAttribute('data-open','true');
+      overlay.setAttribute('data-show','true');
+      burger.setAttribute('aria-expanded','true');
+    }
+    function closeMenu(){
+      sidebar.removeAttribute('data-open');
+      overlay.removeAttribute('data-show');
+      burger.setAttribute('aria-expanded','false');
+    }
+    burger.addEventListener('click', function(){
+      sidebar.getAttribute('data-open') === 'true' ? closeMenu() : openMenu();
+    })
+    close.addEventListener('click', function(){
+      sidebar.getAttribute('data-open') === 'true' ? closeMenu() : openMenu();
+    });
+    document.addEventListener('keyup', function(e) {
+      if (e.keyCode == 27) {
+          sidebar.removeAttribute('data-open');
+          overlay.removeAttribute('data-show');
+      }
+    });
+    overlay.addEventListener('click', closeMenu);
+  })();
+</script>
+
+</body>
+</html>
