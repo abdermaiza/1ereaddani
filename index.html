@@ -386,6 +386,38 @@
       inset:0;
     }
   }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skippy {
+    display: block;
+    padding: 1em;
+    z-index: 22;
+    text-align: center;
+    outline: 0;
+    color: var(--black-color);
+    background-color: var(--main-color);
+  }
+  .skippy__text {
+    padding: .5em;
+    outline: 1px dotted var(--black-color);
+  }
+  .sr-only--focusable:active, .sr-only--focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
 </style>
 </head>
 <body>
@@ -401,6 +433,9 @@
 <div class="overlay" id="overlay"></div>
 
 <div class="app">
+  <a class="skippy sr-only sr-only--focusable" href="#content">
+    <span class="skippy__text">Contenu principal</span>
+  </a>
 
   <!-- Sidebar -->
   <aside class="sidebar pattern-teal" id="sidebar">
