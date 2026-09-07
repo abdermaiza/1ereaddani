@@ -225,19 +225,6 @@
     padding-bottom: 8.25rem;
     max-width:90rem
   }
-  .footer {
-    padding:1rem 2rem;
-    background-color:var(--teal-dark);
-    position:absolute;
-    bottom:0;
-    width:100%;
-    color:var(--card)
-  }
-  .footer a {
-    color:var(--gold);    
-    font-weight:bold
-  }
-
   .page{ display:none; }
   .page[data-active="true"]{ display:block; animation:riseIn .5s ease both; }
 
@@ -352,12 +339,20 @@
     border-bottom-color:var(--pomegranate)
   }
 
-  footer.page-note{
-    margin-top:1.6rem;
-    font-size:.85rem;
-    color:var(--ink-soft);
+  .footer {
+    padding:1rem 1.5rem;
+    background-color:var(--teal-dark);
+    position:absolute;
+    bottom:0;
+    width:100%;
+    color:var(--card)
   }
-
+  
+  .footer a {
+    color:var(--gold);    
+    font-weight:bold
+  }
+  
   /* Overlay for mobile nav */
   .overlay{
     display:none;
@@ -633,7 +628,6 @@
             <li>Préparer la lecture fluide de la lettre BA. Lire 5 à 10 fois par jour minimum...</li>
           </ul>
         </div>
-        <footer class="page-note"></footer>
       </section>
   
       <section class="page" id="page-8">
