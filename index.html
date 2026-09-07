@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cours d'arabe 1ere année - Rentrée</title>
+<title>Cours d'arabe 1ere année H - Rentrée 2026/2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="https://www.institut-addani.fr/wp-content/uploads/2020/06/cropped-favicon-192x192.png" sizes="192x192">
@@ -44,7 +44,9 @@
     font-family:var(--font-body);
     font-weight:400;
     line-height:1.6;
-    -webkit-font-smoothing:antialiased
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    min-height:100vh
   }
 
   ::selection{ background:var(--gold-light); color:var(--teal-dark); }
@@ -80,10 +82,7 @@
   }
 
   /* ===== App shell ===== */
-  .app{
-    display:flex;
-    min-height:100vh
-  }
+
   h2 {font-size:1.4rem}
 
   /* ---- Sidebar navigation ---- */
@@ -356,7 +355,7 @@
 
   /* ===== Responsive ===== */
   @media (max-width: 860px){
-    .app{ flex-direction:column; }
+    body{ flex-direction:column; }
 
     .topbar{ display:flex; }
     .btn--close {display: block;}
@@ -428,25 +427,24 @@
     <span class="skippy__text">Contenu principal</span>
   </a>
   <!-- Mobile top bar -->
-  <div class="topbar pattern-teal">
+  <header class="topbar pattern-teal" role="banner">
     <p class="kalima" dir="rtl" lang="ar">الـعربية  في المعهد  الداني<span class="span"> · Cours d'arabe Addani</span></p>
-    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="sidebar" title="Ouvrir le menu">
-      <span></span><span></span><span></span>
+    <button class="burger" id="burgerBtn" aria-expanded="false" aria-controls="sidebar" aria-label="Ouvrir le menu" title="Ouvrir le menu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
-  </div>
+  </header>
 
-  <div class="overlay" id="overlay"></div>
+  <div class="overlay" id="overlay" role="presentation"></div>
   
-  <div class="app">
     <!-- Sidebar -->
-    <aside class="sidebar pattern-teal" id="sidebar">
+    <aside class="sidebar pattern-teal" id="sidebar" role="complementary">
       <button class="btn btn--close" aria-label="Fermer le menu" title="Fermer le menu">X</button>
       <div class="brand">
         <p class="kalima" dir="rtl" lang="ar">الـعربية  في المعهد  الداني<span>Cours d'arabe à Addani</span></p>
         <p class="sub">Programme de la rentrée</p>
       </div>
   
-      <nav class="pages" aria-label="Sommaire du cours">
+      <nav class="pages" role="navigation" aria-label="Sommaire du cours">
         <ul id="navList">
           <li><button class="navlink" data-target="page-1" aria-current="page"><span class="num">01</span> Rappel &amp; conseils</button></li>
           <li><button class="navlink" data-target="page-2"><span class="num">02</span> Présentations</button></li>
@@ -461,7 +459,7 @@
     </aside>
   
     <!-- Main content -->
-    <main class="stage" id="content" tabindex="-1">
+    <main role="main" class="stage" id="content" tabindex="-1">
   
       <section class="page" id="page-1" data-active="true">
         <div class="page-eyebrow"><span class="num">01</span> Rappel &amp; conseils</div>
@@ -686,7 +684,6 @@
       </section>
   
     </main>
-  </div>
   
   <!-- Scripts Maison -->
   <script>
