@@ -429,6 +429,93 @@
     clip: auto;
     white-space: normal;
   }
+
+  .section-head{ display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+  .section-icon{ flex:0 0 auto; width:40px; height:40px; color:var(--maroon); }
+  .section-head h2{
+    font-family:'Fraunces',serif; font-weight:600; color:var(--indigo);
+    font-size:clamp(1.3rem, 3vw, 1.6rem); margin:0 0 4px;
+  }
+  .section-head p{ margin:0; color:var(--ink-soft); font-size:0.98rem; max-width:56ch; }
+
+  /* count section */
+  .count-card{
+    display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:4px; padding:24px;
+  }
+  .count-number{
+    font-family:'Fraunces',serif; font-weight:700; font-size:4.2rem; color:var(--indigo);
+    min-width:110px; text-align:center; transition:transform 0.25s ease;
+  }
+  .count-number.bump{ transform:scale(1.12); }
+  .count-text{ flex:1; min-width:220px; }
+  .hamza-toggle{
+    font-family:'Lora',serif; font-size:0.92rem; border:1px solid var(--indigo);
+    background:transparent; color:var(--indigo); padding:9px 16px; border-radius:20px; cursor:pointer;
+  }
+  .hamza-toggle:hover{ background:var(--indigo); color:var(--paper); }
+  .count-detail{ font-size:0.9rem; color:var(--ink-soft); margin-top:10px; min-height:2.4em; }
+
+  /* harakat */
+  .harakat-panel{ background:var(--paper-deep); border:1px solid var(--rule); border-radius:4px; padding:28px 24px; text-align:center; }
+  .harakat-glyph{ font-family:'Noto Naskh Arabic',serif; font-size:5rem; color:var(--indigo); min-height:1.4em; }
+  .harakat-sound{ font-family:'Fraunces',serif; font-size:1.1rem; color:var(--maroon); margin-top:4px; min-height:1.4em; }
+  .harakat-buttons{ display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+  .hbtn{
+    font-family:'Lora',serif; font-size:0.95rem; padding:10px 20px; border-radius:20px;
+    border:1px solid var(--indigo); background:transparent; color:var(--indigo); cursor:pointer;
+  }
+  .hbtn[aria-pressed="true"]{ background:var(--maroon); border-color:var(--maroon); color:var(--paper);    font-weight: bold }
+  .bounce{ animation:bounce 0.4s ease; }
+  @keyframes bounce{ 0%{ transform:scale(0.85); } 60%{ transform:scale(1.08); } 100%{ transform:scale(1); } }
+
+  /* long vowels */
+  .vowel-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; }
+  .vowel-card{ background:var(--paper-deep); border:1px solid var(--rule); border-radius:4px; padding:20px; text-align:center; }
+  .vowel-letter{ font-family:'Noto Naskh Arabic',serif; font-size:2.6rem; color:var(--indigo); }
+  .vowel-name{ font-family:'Fraunces',serif; font-size:0.95rem; color:var(--maroon); margin:4px 0 12px; }
+  .vowel-word{ font-family:'Noto Naskh Arabic',serif; font-size:1.9rem; color:var(--ink); }
+  .vowel-fr{ color:var(--ink-soft); margin-top:4px; }
+
+  /* roses / attachement */
+  .rose-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+  .rose-chip{
+    display:flex; align-items:center; gap:6px; background:var(--paper-deep);
+    border:1px solid var(--rule); border-radius:20px; padding:6px 14px;
+    font-family:'Noto Naskh Arabic',serif; font-size:1.3rem; color:var(--indigo);
+  }
+  .rose-chip .em{ font-size:0.9rem; }
+  .word-buttons{ display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
+  .wbtn{
+    font-family:'Lora',serif; font-size:0.92rem; padding:9px 18px; border-radius:20px;
+    border:1px solid var(--indigo); background:transparent; color:var(--indigo); cursor:pointer;
+  }
+  .wbtn[aria-pressed="true"]{ background:var(--indigo); color:var(--paper); }
+  .word-panel{ background:var(--paper-deep); border:1px solid var(--rule); border-radius:4px; padding:28px 24px; }
+  .word-natural{ font-family:'Noto Naskh Arabic',serif; font-size:2.6rem; direction:rtl; text-align:center; color:var(--ink); margin-bottom:6px; }
+  .word-gloss{ text-align:center; color:var(--ink-soft); font-size:0.88rem; margin-bottom:22px; }
+  .word-breakdown{
+    display:flex; direction:rtl; justify-content:center; align-items:flex-end; gap:4px; flex-wrap:wrap;
+    font-family:'Noto Naskh Arabic',serif; font-size:2.1rem; color:var(--indigo); min-height:2.6em;
+  }
+  .cluster{ background:rgba(28,58,68,0.07); border-radius:4px; padding:4px 8px; }
+  .rose-mark{ font-size:1rem; align-self:center; margin:0 -2px; }
+  .word-legend{ text-align:center; color:var(--ink-soft); font-size:0.85rem; margin-top:16px; }
+
+  /* position forms */
+  .letter-tabs{ display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
+  .ltab{
+    font-family:'Noto Naskh Arabic',serif; font-size:1.5rem; width:52px; height:52px;
+    border-radius:50%; border:1px solid var(--indigo); background:transparent; color:var(--indigo); cursor:pointer;
+  }
+  .ltab[aria-pressed="true"]{ background:var(--indigo); color:var(--paper);outline: 2px solid var(--gold); }
+  .form-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+  .form-card{ background:var(--paper-deep); border:1px solid var(--rule); border-radius:4px; padding:18px 8px; text-align:center; }
+  .form-glyph{ font-family:'Noto Naskh Arabic',serif; font-size:2.4rem; color:var(--indigo); min-height:1.3em; }
+  .form-label{ color:var(--ink-soft); margin-top:8px; }
+  @media (max-width:480px){ .form-grid{ grid-template-columns:repeat(2,1fr); gap:10px; } }
+
+  footer{ padding:36px 24px 56px; text-align:center; color:var(--ink-soft); font-size:0.85rem; }
 </style>
 </head>
 
@@ -613,22 +700,117 @@
         <div class="page-eyebrow"><span class="num">07</span> 1er cours</div>
         <h1>Let's start today!</h1>
         <div class="divider"></div>
-        <div class="content-card">
-          <p class="">La langue arabe est une langue variable et transparente.</p>
-          <ul>
-            <li class="">Lire page 5 & 6, lettres, voyelles courtes & longues.</li>
-            <li class="">Exemples de lettres collées.</li>
-            <li class="">La lettre BA.</li>
-            <li class="">Chacun lit la page sur BA.</li>
-            <li class="">Ecrire 4 fois par ligne ds le livre (crayon).</li>
-          </ul>
-          <p><strong>Devoirs</strong> prochain cours :</p>
-          <ul>
-            <li>Recopier 2 fois la page 10 (lettre BA), taille à respecter comme dans les modèles. Attention dictée après !!</li>
-            <li>Préparer la lecture fluide de la lettre BA. Lire 5 à 10 fois par jour minimum...</li>
-            <li>Acheter les fournitures.</li>
-          </ul>
-        </div>
+        <section id="count">
+    <div class="section-head">
+      <svg class="section-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="15"/><text x="20" y="25" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-family="Fraunces, serif">28</text></svg>
+      <div>
+        <h2>Combien de lettres ?</h2>
+        <p>L'alphabet arabe est un peu plus court que le nôtre — et son compte exact fait débat.</p>
+      </div>
+    </div>
+    <div class="count-card">
+      <div class="count-number" id="countNumber">28</div>
+      <div class="count-text">
+        <button class="hamza-toggle" id="hamzaBtn" aria-pressed="false">Et avec le hamza ?</button>
+        <p class="count-detail" id="countDetail">28 lettres composent l'alphabet de base.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="harakat">
+    <div class="section-head">
+      <svg class="section-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="12" y1="12" x2="12" y2="28"/><line x1="20" y1="12" x2="20" y2="28"/><line x1="28" y1="12" x2="28" y2="28"/></svg>
+      <div>
+        <h2>3 voyelles courtes : les harakat</h2>
+        <p>Ce sont de petits signes posés sur ou sous la lettre pour indiquer le son "a", "i" ou "ou". Clique pour les essayer sur la lettre <span lang="ar">ب</span>.</p>
+      </div>
+    </div>
+    <div class="harakat-panel">
+      <div class="harakat-glyph" id="harakatGlyph" lang="ar">ب</div>
+      <div class="harakat-sound" id="harakatSound">&nbsp;</div>
+      <div class="harakat-buttons">
+        <button class="hbtn" data-mark="fatha" data-sym="&#1614;" data-sound="a" aria-pressed="false">Fatha — "a"</button>
+        <button class="hbtn" data-mark="kasra" data-sym="&#1616;" data-sound="i" aria-pressed="false">Kasra — "i"</button>
+        <button class="hbtn" data-mark="damma" data-sym="&#1615;" data-sound="ou" aria-pressed="false">Damma — "ou"</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="voyelles-longues">
+    <div class="section-head">
+      <svg class="section-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 28 Q20 8 30 28"/></svg>
+      <div>
+        <h2>Les voyelles longues</h2>
+        <p>Pour allonger un son, on colle carrément une lettre : alif, waw ou ya.</p>
+      </div>
+    </div>
+    <div class="vowel-grid">
+      <div class="vowel-card">
+        <div class="vowel-letter" lang="ar">ا</div>
+        <div class="vowel-name">alif — long "a"</div>
+        <div class="vowel-word" lang="ar">بَاب</div>
+        <div class="vowel-fr">bâb, "porte"</div>
+      </div>
+      <div class="vowel-card">
+        <div class="vowel-letter" lang="ar">و</div>
+        <div class="vowel-name">waw — long "ou"</div>
+        <div class="vowel-word" lang="ar">نُور</div>
+        <div class="vowel-fr">nour, "lumière"</div>
+      </div>
+      <div class="vowel-card">
+        <div class="vowel-letter" lang="ar">ي</div>
+        <div class="vowel-name">ya — long "i"</div>
+        <div class="vowel-word" lang="ar">فِيل</div>
+        <div class="vowel-fr">fîl, "éléphant"</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roses">
+    <div class="section-head">
+      <svg class="section-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="14" cy="20" r="4"/><circle cx="26" cy="20" r="4"/><line x1="18" y1="20" x2="22" y2="20" stroke-dasharray="2 2"/></svg>
+      <div>
+        <h2>Les lettres qui n'attachent pas : celles en fond rose</h2>
+        <p>Toutes les lettres s'attachent entre elles dans un mot, sauf 6 — surnommées "les roses" dans votre livre (page 7). Après l'une d'elles, la lettre suivante repart comme au début d'un mot.</p>
+      </div>
+    </div>
+    <div class="rose-chips">
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">ا</span></span>
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">د</span></span>
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">ذ</span></span>
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">ر</span></span>
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">ز</span></span>
+      <span class="rose-chip"><span class="em">🌹</span><span lang="ar">و</span></span>
+    </div>
+    <div class="word-buttons" id="wordButtons">
+      <button class="wbtn" data-word="بيت" data-gloss="bayt, « maison » — aucune rose, tout s'attache" aria-pressed="true">بيت — maison</button>
+      <button class="wbtn" data-word="مدينة" data-gloss="madîna, « ville » — une rose casse la chaîne" aria-pressed="false">مدينة — ville</button>
+      <button class="wbtn" data-word="وردة" data-gloss="wardah, « rose » — un joli clin d'œil, presque tout casse !" aria-pressed="false">وردة — rose</button>
+    </div>
+    <div class="word-panel">
+      <div class="word-natural" id="wordNatural" dir="rtl" lang="ar">بيت</div>
+      <div class="word-gloss" id="wordGloss">bayt, « maison » — aucune rose, tout s'attache</div>
+      <div class="word-breakdown" id="wordBreakdown" dir="rtl"></div>
+      <p class="word-legend">Chaque 🌹 marque une lettre-rose : elle ne se relie pas à la lettre suivante.</p>
+    </div>
+  </section>
+
+  <section id="positions">
+    <div class="section-head">
+      <svg class="section-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="8" y="16" width="6" height="8"/><rect x="17" y="14" width="6" height="12"/><rect x="26" y="16" width="6" height="8"/></svg>
+      <div>
+        <h2>Une forme selon la position</h2>
+        <p>Une même lettre change de silhouette selon qu'elle est isolée, ou en début, milieu, fin de mot. Choisis une lettre :</p>
+      </div>
+    </div>
+    <div class="letter-tabs" id="letterTabs">
+      <button class="ltab" data-letter="beh" aria-pressed="true" lang="ar">ب</button>
+      <button class="ltab" data-letter="ain" aria-pressed="false" lang="ar">ع</button>
+      <button class="ltab" data-letter="meem" aria-pressed="false" lang="ar">م</button>
+      <!--<button class="ltab" data-letter="heh" aria-pressed="false" lang="ar">ه</button>-->
+    </div>
+    <div class="form-grid" id="formGrid"></div>
+  </section>
       </section>
   
       <section class="page" id="page-8">
@@ -758,6 +940,141 @@
       overlay.addEventListener('click', closeMenu);
     })();
   </script>
+
+  // ---SCRIPT PAGE DE COURS 1 ----
+  <script>
+  // ---------- Hero typing demo ----------
+  function typeTrack(el, text, delay, startDelay){
+    let i = 0;
+    setTimeout(function step(){
+      if(i >= text.length) return;
+      const span = document.createElement('span');
+      span.className = 'letter-in';
+      span.textContent = text[i];
+      el.appendChild(span);
+      i++;
+      setTimeout(step, delay);
+    }, startDelay);
+  }
+  typeTrack(document.getElementById('track-fr'), 'lire', 140, 300);
+  typeTrack(document.getElementById('track-ar'), 'قرأ', 140, 1400);
+
+  // ---------- Count / hamza ----------
+  const countNumber = document.getElementById('countNumber');
+  const countDetail = document.getElementById('countDetail');
+  const hamzaBtn = document.getElementById('hamzaBtn');
+  let hamzaOn = false;
+  hamzaBtn.addEventListener('click', () => {
+    hamzaOn = !hamzaOn;
+    hamzaBtn.setAttribute('aria-pressed', hamzaOn);
+    countNumber.textContent = hamzaOn ? '29' : '28';
+    countNumber.classList.add('bump');
+    setTimeout(() => countNumber.classList.remove('bump'), 250);
+    countDetail.textContent = hamzaOn
+      ? 'En comptant le hamza (ء) comme lettre à part entière, on arrive à 29.'
+      : '28 lettres composent l\u2019alphabet de base.';
+  });
+
+  // ---------- Harakat ----------
+  const harakatGlyph = document.getElementById('harakatGlyph');
+  const harakatSound = document.getElementById('harakatSound');
+  const hbtns = document.querySelectorAll('.hbtn');
+  hbtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      hbtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      harakatGlyph.textContent = 'ب' + btn.dataset.sym;
+      harakatGlyph.classList.remove('bounce');
+      void harakatGlyph.offsetWidth;
+      harakatGlyph.classList.add('bounce');
+      harakatSound.textContent = 'Se prononce « b' + btn.dataset.sound + ' »';
+    });
+  });
+
+  // ---------- Roses / word breakdown ----------
+  const NON_CONNECTORS = ['ا','د','ذ','ر','ز','و'];
+  const wordNatural = document.getElementById('wordNatural');
+  const wordGloss = document.getElementById('wordGloss');
+  const wordBreakdown = document.getElementById('wordBreakdown');
+  const wordButtons = document.querySelectorAll('.wbtn');
+
+  function renderBreakdown(word){
+    wordBreakdown.innerHTML = '';
+    const letters = Array.from(word);
+    let cluster = '';
+    letters.forEach((ch, idx) => {
+      cluster += ch;
+      const isBreak = NON_CONNECTORS.includes(ch);
+      const isLast = idx === letters.length - 1;
+      if(isBreak || isLast){
+        const span = document.createElement('span');
+        span.className = 'cluster';
+        span.lang = 'ar';
+        span.textContent = cluster;
+        wordBreakdown.appendChild(span);
+        cluster = '';
+        if(isBreak && !isLast){
+          const rose = document.createElement('span');
+          rose.className = 'rose-mark';
+          rose.textContent = '🌹';
+          wordBreakdown.appendChild(rose);
+        }
+      }
+    });
+  }
+
+  wordButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      wordButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      wordNatural.textContent = btn.dataset.word;
+      wordGloss.textContent = btn.dataset.gloss;
+      renderBreakdown(btn.dataset.word);
+    });
+  });
+  renderBreakdown('بيت');
+
+  // ---------- Letter position forms ----------
+  const LETTER_FORMS = {
+    beh:  { isolee:'\uFE8F', fin:'\uFE90', milieu:'\uFE92', debut:'\uFE91' },
+    ain:  { isolee:'\uFEC9', fin:'\uFECA', milieu:'\uFECC', debut:'\uFECB' },
+    meem: { isolee:'\uFEE1', fin:'\uFEE2', milieu:'\uFEE4', debut:'\uFEE3' }
+    //heh:  { isolee:'\uFEE9', fin:'\uFEEA', milieu:'\uFEEC', debut:'\uFEEB' }
+  };
+  const FORM_LABELS = [
+    ['isolee','isolée'], ['fin','fin'], ['milieu','milieu'], ['debut','debut']
+  ];
+  const formGrid = document.getElementById('formGrid');
+  const letterTabs = document.querySelectorAll('.ltab');
+
+  function renderForms(letterKey){
+    formGrid.innerHTML = '';
+    const forms = LETTER_FORMS[letterKey];
+    FORM_LABELS.forEach(([key, label]) => {
+      const card = document.createElement('div');
+      card.className = 'form-card';
+      const glyph = document.createElement('div');
+      glyph.className = 'form-glyph';
+      glyph.lang = 'ar';
+      glyph.textContent = forms[key];
+      const cap = document.createElement('div');
+      cap.className = 'form-label';
+      cap.textContent = label;
+      card.appendChild(glyph);
+      card.appendChild(cap);
+      formGrid.appendChild(card);
+    });
+  }
+
+  letterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      letterTabs.forEach(t => t.setAttribute('aria-pressed', 'false'));
+      tab.setAttribute('aria-pressed', 'true');
+      renderForms(tab.dataset.letter);
+    });
+  });
+  renderForms('beh');
+</script>
 
 </body>
 </html>
